@@ -12413,7 +12413,7 @@ ER_TELEMETRY_ERROR
   eng "%s"
 
 ER_SRV_START
-  eng "MySQL Server - start."
+  eng "Welcome to Adam's SQL!"
 
 ER_SRV_END
   eng "MySQL Server - end."

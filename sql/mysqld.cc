@@ -9184,6 +9184,8 @@ int mysqld_main(int argc, char **argv)
   substitute_progpath(argv);
   sysd::notify_connect();
   sysd::notify("STATUS=Server startup in progress\n");
+  sql_print_information("Welcome to Adam's SQL!");
+
 
   /*
     Perform basic thread library and malloc initialization,
