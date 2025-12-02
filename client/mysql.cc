@@ -1465,7 +1465,7 @@ int main(int argc, char *argv[]) {
   window_resize(0);
 #endif
 
-  put_info("Welcome to the MySQL monitor.  Commands end with ; or \\g.",
+  put_info("Welcome to the Adam's SQL.  Commands end with ; or \\g.",
            INFO_INFO);
   snprintf(glob_buffer.ptr(), glob_buffer.alloced_length(),
            "Your MySQL connection id is %lu\nServer version: %s\n",

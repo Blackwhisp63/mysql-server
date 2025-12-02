@@ -1700,6 +1700,12 @@ String *Item_func_substr::val_str(String *str) {
     if (args[2]->null_value || thd->is_error()) {
       return error_str();
     }
+// START OF ADAM'S CHANGES CHECK POINT
+  if (length < 0) {
+      start = start + length; // Move start pointer backwards
+      length = -length;       // Flip length to positive
+  }
+  // END OF ADAM'S CHANGE CHECK POINT
     /* Negative or zero length, will return empty string. */
     if (length <= 0 && (length == 0 || !args[2]->unsigned_flag))
       return make_empty_result();
@@ -1713,7 +1719,7 @@ String *Item_func_substr::val_str(String *str) {
   if ((!args[1]->unsigned_flag && (start < INT_MIN32 || start > INT_MAX32)) ||
       (args[1]->unsigned_flag && ((ulonglong)start > INT_MAX32)))
     return make_empty_result();
-
+//checkpoint
   start = ((start < 0) ? res->numchars() + start : start - 1);
   start = res->charpos((int)start);
   if ((start < 0) || (start + 1 > static_cast<longlong>(res->length())))
@@ -5799,4 +5805,25 @@ String *Item_func_internal_get_dd_column_extra::val_str(String *str) {
   str->copy(oss.str().c_str(), oss.str().length(), system_charset_info);
 
   return str;
+}
+longlong Item_func_count_spaces::val_int() {
+  String *res;
+  String tmp;
+  // Get the string value of the argument
+  res = args[0]->val_str(&tmp);
+
+  // If the input is NULL, return 0
+  if (!res) return 0;
+
+  longlong count = 0;
+  const char *str = res->ptr();
+  size_t len = res->length();
+
+  // Loop through the string
+  for (size_t i = 0; i < len; i++) {
+    if (str[i] == ' ') {
+      count++;
+    }
+  }
+  return count;
 }

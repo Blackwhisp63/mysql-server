@@ -1919,4 +1919,11 @@ inline void tohex(char *to, uint64_t from, uint len) {
   }
 }
 
+class Item_func_count_spaces : public Item_int_func {
+ public:
+  Item_func_count_spaces(const POS &pos, Item *a) : Item_int_func(pos, a) {}
+  longlong val_int() override;
+  const char *func_name() const override { return "count_spaces"; }
+};
+
 #endif /* ITEM_STRFUNC_INCLUDED */

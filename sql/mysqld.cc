@@ -9184,7 +9184,7 @@ int mysqld_main(int argc, char **argv)
   substitute_progpath(argv);
   sysd::notify_connect();
   sysd::notify("STATUS=Server startup in progress\n");
-  sql_print_information("Welcome to Adam's SQL!");
+  sql_print_information("nano ~/mysql-server/client/mysql.ccWelcome to Adam's SQL!");
 
 
   /*
